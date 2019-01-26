@@ -1,0 +1,12 @@
+
+[frontends]
+  [frontends.octoprint]
+  backend = "b_octoprint"
+    [frontends.octoprint.routes.r1]
+      rule = "Host: octoprint.cristiangutierrez.space"
+
+[backends]
+  [backends.b_octoprint]
+    [backends.b_octoprint.servers.raspi]
+    url = "http://192.168.1.120:5000"
+    weight = 1

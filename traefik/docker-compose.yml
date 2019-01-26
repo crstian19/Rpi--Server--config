@@ -1,0 +1,21 @@
+version: '3.6'
+
+services:
+  traefik:
+    image: traefik:v1.7.0-rc3-alpine 
+    ports:
+      - "80:80"     # The HTTP port
+      - "443:443"     # The HTTP port
+      - "8080:8080" # The Web UI 
+    labels:
+      - "traefik.frontend.rule=Host:monitor.cristiangutierrez.space"
+      - "traefik.port=8080"
+    restart: always
+    environment:
+      - LEXICON_SLEEP_TIME=60
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Doc
+      - /opt/traefik/traefik.toml:/etc/traefik/traefik.toml
+      - /opt/traefik/rules.toml:/etc/traefik/rules.toml
+      - /opt/traefik/acme/acme.json:/etc/traefik/acme/acme.json
+    container_name: traefik
