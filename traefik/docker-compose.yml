@@ -1,14 +1,14 @@
-version: '3.6'
+version: '3.7'
 
 services:
   traefik:
-    image: traefik:v1.7.0-rc3-alpine 
+    image: traefik
     ports:
       - "80:80"     # The HTTP port
       - "443:443"     # The HTTP port
       - "8080:8080" # The Web UI 
     labels:
-      - "traefik.frontend.rule=Host:monitor.cristiangutierrez.space"
+      - "traefik.frontend.rule=Host:monitor.crstian.me"
       - "traefik.port=8080"
     restart: always
     environment:

@@ -1,12 +1,29 @@
-
 [frontends]
   [frontends.octoprint]
   backend = "b_octoprint"
     [frontends.octoprint.routes.r1]
-      rule = "Host: octoprint.cristiangutierrez.space"
+      rule = "Host: octoprint.crstian.me"
+  [frontends.netdata]
+  backend = "b_netdata"
+    [frontends.netdata.routes.r1]
+      rule = "Host: netdata.crstian.me"
+   [frontends.transmission]
+  backend = "b_transmission"
+    [frontends.transmission.routes.r1]
+      rule = "Host: torrent.crstian.me"
+
 
 [backends]
   [backends.b_octoprint]
     [backends.b_octoprint.servers.raspi]
-    url = "http://192.168.1.120:5000"
+    url = "http://alarm:5000"
     weight = 1
+    [backends.b_netdata]
+      [backends.b_netdata.servers.raspi]
+      url = "http://linksys:19999"
+      weight = 1
+    [backends.b_transmission]
+      [backends.b_transmission.servers.raspi]
+      url = "http://linksys:9091"
+      weight = 1
+
